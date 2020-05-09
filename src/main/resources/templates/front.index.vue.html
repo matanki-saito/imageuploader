@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+
+  <!-- vue.js -->
+  <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+  <!-- time -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment-with-locales.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/locale/ja.min.js"></script>
+
+  <!-- file upload -->
+  <script src="https://unpkg.com/vue-upload-component"></script>
+
+  <!-- bootstrap vue -->
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script>
+
+  <!-- http get/post library -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- ページネーション -->
+  <script src="https://unpkg.com/vuejs-paginate@latest"></script>
+
+  <!-- パーサーレベルコメントでintellijの63342とspringの8443での確認をスイッチ -->
+  <!--/*-->
+  <link href="../../static/front/css/site.css">
+  <script src="../../static/front/js/define.local.js"></script>
+
+  <script src="../../static/front/js/main.js"></script>
+  <script src="../../static/front/js/new.js"></script>
+  <!--*/-->
+
+  <!--/*/
+  <link href="/front/css/site.site.css">
+  <script src="/front/js/define.thymleaf.js"></script>
+  /*/-->
+</head>
+<body>
+
+<div id="root">
+  <!-- 画面中央に寄せる -->
+  <div class="container">
+    <router-link class="btn btn-primary" to="/image/new">新規作成</router-link>
+
+    <!-- main -->
+    <router-view></router-view>
+  </div>
+</div>
+
+<!-- main -->
+<script>
+  const routes = [
+    {path: '/image/list', component: imageList, name: 'imageList'},
+    {path: '/image/new', component: imageNew, name: 'imageNew'}
+  ];
+
+  const router = new VueRouter({
+    routes
+  });
+
+  // newするよりも先
+  Vue.component('paginate', VuejsPaginate);
+  Vue.component('file-upload', VueUploadComponent);
+
+  const root = new Vue({
+    router
+  }).$mount('#root');
+
+
+</script>

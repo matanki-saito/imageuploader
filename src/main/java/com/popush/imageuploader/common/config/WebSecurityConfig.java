@@ -1,4 +1,4 @@
-package com.popush.imageuploader.config;
+package com.popush.imageuploader.common.config;
 
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/image/**").permitAll() // APIs
+                .antMatchers("/front/**").permitAll() // APIs
                 .antMatchers("/swagger-ui.html").permitAll() // help
                 .antMatchers("/", "/error").permitAll() //other
                 .anyRequest()
@@ -37,6 +37,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/image/**");
+        web.ignoring().antMatchers("/front/**");
     }
 }
