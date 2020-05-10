@@ -70,7 +70,10 @@ buildscript {
 
             // lombok
             // アノテーション処理
-            'lombok'                            : '1.18.12'
+            'lombok'                            : '1.18.12',
+
+            // OCR
+            'tiff4j'                            : '4.5.1'
     ]
 
     repositories {
@@ -230,6 +233,7 @@ dependencies {
     implementation("com.github.napstr:logback-discord-appender:${versions.logbackDiscord}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("commons-codec:commons-codec:${versions.apacheCommonCodec}")
+    implementation("net.sourceforge.tess4j:tess4j:${versions.tess4j}")
 
     runtimeOnly('mysql:mysql-connector-java')
     runtimeOnly('org.springframework.boot:spring-boot-devtools')
