@@ -37,7 +37,7 @@ public class LocalFolderImageRepository implements ImageRepository {
 
     @Override
     public String getThumbnailEndPointUri(String key) {
-        return null;
+        return "/front/localimage/" + key;
     }
 
     @Override

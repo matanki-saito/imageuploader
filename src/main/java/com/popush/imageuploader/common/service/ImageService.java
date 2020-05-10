@@ -2,12 +2,19 @@ package com.popush.imageuploader.common.service;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.function.Function;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.popush.imageuploader.common.db.ImageEntity;
 import com.popush.imageuploader.common.db.ImageEntityMapper;
+import com.popush.imageuploader.common.db.ImageEntityReadonly;
+import com.popush.imageuploader.common.model.ImageEntityCondition;
 import com.popush.imageuploader.common.utility.ImageUtility;
+import com.popush.imageuploader.common.utility.PageUtility;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,5 +46,12 @@ public class ImageService {
                                             .build());
 
         return imageRepository.getEndPointUri(key);
+    }
+
+    public <T> Page<T> getList(Pageable pageable, Function<ImageEntityReadonly, T> converter) {
+        List<ImageEntityReadonly> list = imageEntityMapper.select(ImageEntityCondition.builder()
+                                                                                      .build());
+
+        return PageUtility.generatePageFromListWithConverter(list, pageable, converter);
     }
 }

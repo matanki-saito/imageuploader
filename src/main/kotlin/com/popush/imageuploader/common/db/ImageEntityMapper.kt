@@ -86,6 +86,7 @@ interface ImageEntityMapper {
                     AND `enable` = #{condition.enable}
                 </if>
             </where>
+            LIMIT 100
         </script>
     """)
     fun select(@Param("condition") @NonNull imageEntityCondition: ImageEntityCondition): List<ImageEntityReadonly>
