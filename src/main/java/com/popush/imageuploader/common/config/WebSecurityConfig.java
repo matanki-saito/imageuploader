@@ -16,7 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/front/**").permitAll() // APIs
+                .antMatchers("/front/**").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll() // help
                 .antMatchers("/", "/error").permitAll() //other
                 .anyRequest()
@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/front/**");
+        web.ignoring()
+           .antMatchers("/front/**");
     }
 }

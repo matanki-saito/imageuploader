@@ -31,7 +31,7 @@
   <!--*/-->
 
   <!--/*/
-  <link href="/front/css/site.css">
+  <link rel="stylesheet" href="/front/css/site.css">
   <script src="/front/js/define.thymleaf.js"></script>
 
   <script src="/front/js/main.js"></script>
@@ -50,7 +50,7 @@
 <!-- main -->
 <script>
   const routes = [
-    {path: '/front/upload', component: uploadImage, name: 'upload-image'}
+    {path: '/upload', component: uploadImage, name: 'upload-image'}
   ];
 
   const router = new VueRouter({

@@ -18,7 +18,7 @@ public class FrontApiController extends ControllerBase {
     public UploadImageFormResponse uploadImage(@RequestBody @Validated UploadImageForm form) {
 
         return UploadImageFormResponse.builder()
-                                      .url("")
+                                      .url("Yukkuri")
                                       .build();
     }
 }
