@@ -21,7 +21,7 @@ buildscript {
             // https://github.com/aws/aws-sdk-java-v2/
             'awssdk'                            : '2.11.12',
 
-            // apache common library. hmacの算出に使用
+            // apache com.popush.imageuploader.common library. hmacの算出に使用
             // https://commons.apache.org/
             'apacheCommonCodec'                 : '1.13',
 

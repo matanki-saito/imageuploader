@@ -1,7 +1,7 @@
 package com.popush.imageuploader.common.utility;
 
 import static java.awt.Image.SCALE_SMOOTH;
-import static java.awt.image.BufferedImage.TYPE_INT_RGB;
+import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -31,13 +31,13 @@ public class ImageUtility {
 
         BufferedImage bufferedImage = new BufferedImage(thumbnailImage.getWidth(null),
                                                         thumbnailImage.getWidth(null),
-                                                        TYPE_INT_RGB);
+                                                        TYPE_INT_ARGB);
 
         bufferedImage.createGraphics().drawImage(thumbnailImage, 0, 0, null);
 
         ByteBuffer result;
         try (var out = new ByteArrayOutputStream()) {
-            ImageIO.write(bufferedImage, "jpg", out);
+            ImageIO.write(bufferedImage, "png", out);
             result = ByteBuffer.wrap(out.toByteArray());
         }
 
