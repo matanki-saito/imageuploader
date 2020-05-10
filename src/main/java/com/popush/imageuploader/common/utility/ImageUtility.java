@@ -30,7 +30,7 @@ public class ImageUtility {
         }
 
         BufferedImage bufferedImage = new BufferedImage(thumbnailImage.getWidth(null),
-                                                        thumbnailImage.getWidth(null),
+                                                        thumbnailImage.getHeight(null),
                                                         TYPE_INT_ARGB);
 
         bufferedImage.createGraphics().drawImage(thumbnailImage, 0, 0, null);

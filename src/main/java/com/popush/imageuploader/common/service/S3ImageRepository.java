@@ -3,8 +3,10 @@ package com.popush.imageuploader.common.service;
 import java.nio.ByteBuffer;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 @Profile("prod")
+@Repository
 public class S3ImageRepository implements ImageRepository {
     @Override
     public String save(ByteBuffer image) {

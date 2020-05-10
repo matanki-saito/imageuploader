@@ -17,6 +17,13 @@ public class ImageService {
     private final ImageRepository imageRepository;
     private final ImageEntityMapper imageEntityMapper;
 
+    /**
+     * Save Image to database and repository
+     *
+     * @param image image data
+     *
+     * @return endpoint URI
+     */
     public String saveImage(ByteBuffer image) {
         var key = imageRepository.save(image);
         String thumbKey;
