@@ -1,0 +1,41 @@
+{
+  "pageable": {
+    "sort": {
+      "unsorted": true,
+      "sorted": false,
+      "empty": true
+    },
+    "offset": 0,
+    "pageSize": 30,
+    "pageNumber": 0,
+    "paged": true,
+    "unpaged": false
+  },
+  "last": true,
+  "totalElements": 4,
+  "totalPages": 2,
+  "size": 30,
+  "number": 0,
+  "sort": {
+    "unsorted": true,
+    "sorted": false,
+    "empty": true
+  },
+  "numberOfElements": 8,
+  "first": true,
+  "empty": false,
+  "content": [
+    {
+      "id": "1",
+      "active": true,
+      "thumbnailUrl": "/henrietta/henrietta.test/150x150.png",
+      "timestamp": "1588950403"
+    },
+    {
+      "id": "2",
+      "active": false,
+      "thumbnailUrl": "/henrietta/henrietta.test/150x150.png",
+      "timestamp": "1588950403"
+    }
+  ]
+}

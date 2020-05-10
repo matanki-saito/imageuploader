@@ -1,4 +1,4 @@
-const imageList = Vue.component('imageList', {
+const listImage = Vue.component('list-image', {
 
   data() {
     return {
@@ -47,7 +47,6 @@ const imageList = Vue.component('imageList', {
           <thead class="thead-light">
           <tr>
             <th>ID</th>
-            <th>label</th>
             <th>thumbnail</th>
             <th>timestamp</th>
             <th>action</th>
@@ -59,7 +58,6 @@ const imageList = Vue.component('imageList', {
             :key="item.id"
             :class="{ 'table-warning': !item.active, 'table-info': item.active }">
             <td>{{ item.id }}</td>
-            <td>{{ item.label }}</td>
             <td>
               <img :src="item.thumbnailUrl">
             </td>

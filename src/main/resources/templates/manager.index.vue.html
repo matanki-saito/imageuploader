@@ -12,9 +12,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment-with-locales.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/locale/ja.min.js"></script>
 
-  <!-- file upload -->
-  <script src="https://unpkg.com/vue-upload-component"></script>
-
   <!-- bootstrap vue -->
   <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" />
@@ -27,18 +24,19 @@
   <!-- ページネーション -->
   <script src="https://unpkg.com/vuejs-paginate@latest"></script>
 
-  <!-- パーサーレベルコメントでintellijの63342とspringの8443での確認をスイッチ -->
+  <!-- パーサーレベルコメントでintellijの63342とspringの6443での確認をスイッチ -->
   <!--/*-->
-  <link href="../../static/uploader/css/site.css">
-  <script src="../../static/uploader/js/define.local.js"></script>
+  <link rel="stylesheet" href="../../static/manager/css/site.css">
+  <script src="../../static/manager/js/define.local.js"></script>
 
-  <script src="../../static/uploader/js/image/main.js"></script>
-  <script src="../../static/uploader/js/image/new.js"></script>
+  <script src="../../static/manager/js/main.js"></script>
   <!--*/-->
 
   <!--/*/
-  <link href="/css/site.site.css">
-  <script src="/js/define.thymleaf.js"></script>
+  <link rel="stylesheet" href="/manager/css/site.css">
+  <script src="/manager/js/define.thymleaf.js"></script>
+
+  <script src="/manager/js/main.js"></script>
   /*/-->
 </head>
 <body>
@@ -46,7 +44,6 @@
 <div id="root">
   <!-- 画面中央に寄せる -->
   <div class="container">
-    <router-link class="btn btn-primary" to="/image/new">新規作成</router-link>
 
     <!-- main -->
     <router-view></router-view>
@@ -56,8 +53,7 @@
 <!-- main -->
 <script>
   const routes = [
-    {path: '/image/list', component: imageList, name: 'imageList'},
-    {path: '/image/new', component: imageNew, name: 'imageNew'}
+    {path: '/list', component: listImage, name: 'list-image'}
   ];
 
   const router = new VueRouter({
@@ -66,7 +62,6 @@
 
   // newするよりも先
   Vue.component('paginate', VuejsPaginate);
-  Vue.component('file-upload', VueUploadComponent);
 
   const root = new Vue({
     router
