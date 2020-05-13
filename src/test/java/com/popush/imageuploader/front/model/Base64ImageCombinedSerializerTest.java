@@ -15,6 +15,7 @@ import org.springframework.util.ResourceUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.popush.imageuploader.ImageuploaderTestApplication;
+import com.popush.imageuploader.common.model.Base64Image;
 
 @SpringBootTest(classes = ImageuploaderTestApplication.class)
 @ExtendWith(SpringExtension.class)

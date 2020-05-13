@@ -27,7 +27,7 @@ const listImage = Vue.component('list-image', {
     clickCallback: function (pageNum) {
       this.refreshData(Math.max(Number(pageNum) - 1, 0));
     },
-    refreshData: function (pageNumber) {
+    refreshData: async function (pageNumber) {
       const params = {params: {page: pageNumber, size: IMAGE_LIST_ENTRY_SIZE}};
 
       axios.get(IMAGE_LIST_URL, params)
@@ -37,6 +37,10 @@ const listImage = Vue.component('list-image', {
            .catch((res) => {
              console.error(res);
            });
+    },
+    deleteItem: async function (id) {
+      await axios.delete(`/manager/${id}/delete`);
+      this.refreshData(0);
     }
   },
   template: `
@@ -71,7 +75,7 @@ const listImage = Vue.component('list-image', {
               <template v-else>
                 <button class="btn btn-info">ACTIVE</button>
               </template>
-              <button class="btn btn-danger">DELETE</button>
+              <button class="btn btn-danger" @click="deleteItem(item.id)">DELETE</button>
             </td>
           </tr>
           </tbody>

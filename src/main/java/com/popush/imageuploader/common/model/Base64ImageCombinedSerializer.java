@@ -1,4 +1,4 @@
-package com.popush.imageuploader.front.model;
+package com.popush.imageuploader.common.model;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

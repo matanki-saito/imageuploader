@@ -1,5 +1,6 @@
 package com.popush.imageuploader.common.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -53,5 +54,17 @@ public class ImageService {
                                                                                       .build());
 
         return PageUtility.generatePageFromListWithConverter(list, pageable, converter);
+    }
+
+    public void deleteItem(long id) {
+        var item = imageEntityMapper.select(ImageEntityCondition.builder().id(id).build());
+
+        if (item.size() != 1) {
+            throw new IllegalArgumentException();
+        }
+
+        imageEntityMapper.deleteById(id);
+        imageRepository.delete(item.get(0).getThumbnailKey());
+        imageRepository.delete(item.get(0).getKey());
     }
 }

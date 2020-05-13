@@ -73,7 +73,7 @@ buildscript {
             'lombok'                            : '1.18.12',
 
             // OCR
-            'tiff4j'                            : '4.5.1'
+            'tess4j'                            : '4.5.1'
     ]
 
     repositories {
@@ -243,6 +243,7 @@ dependencies {
     // lombokにはcompileOnly,annotationProcessor,testImplementationが必要
     // https://medium.com/@tsuyoshiushio/gradle-5-0-with-lombok-and-spring-boot-e8ca564fc552
     annotationProcessor("org.projectlombok:lombok:${versions.lombok}")
+    testAnnotationProcessor("org.projectlombok:lombok:${versions.lombok}")
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
 
 

@@ -2,8 +2,9 @@ package com.popush.imageuploader.front.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.popush.imageuploader.front.model.Base64ImageCombinedSerializer.Base64ImageJsonDeserializer;
-import com.popush.imageuploader.front.model.Base64ImageCombinedSerializer.Base64ImageJsonSerializer;
+import com.popush.imageuploader.common.model.Base64Image;
+import com.popush.imageuploader.common.model.Base64ImageCombinedSerializer.Base64ImageJsonDeserializer;
+import com.popush.imageuploader.common.model.Base64ImageCombinedSerializer.Base64ImageJsonSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

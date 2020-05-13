@@ -27,4 +27,9 @@ public class S3ImageRepository implements ImageRepository {
     public String getEndPointUri(String key) {
         return null;
     }
+
+    @Override
+    public void delete(String key) {
+
+    }
 }

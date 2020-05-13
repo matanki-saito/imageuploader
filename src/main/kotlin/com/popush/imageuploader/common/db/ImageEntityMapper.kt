@@ -65,6 +65,17 @@ interface ImageEntityMapper {
     """)
     fun deleteByKey(@NonNull key: String): Int
 
+    @Delete("""
+        <script>
+            DELETE FROM `image`
+            <where>
+                `image_id` = #{id}
+            </where>
+        </script>
+    """)
+    fun deleteById(@NonNull id: Long): Int
+
+
     @Results(value = [
         Result(property = "imageId", column = "image_id"),
         Result(property = "thumbnailKey", column = "thumbnail_key"),

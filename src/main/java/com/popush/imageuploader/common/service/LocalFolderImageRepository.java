@@ -44,4 +44,13 @@ public class LocalFolderImageRepository implements ImageRepository {
     public String getEndPointUri(String key) {
         return "/front/localimage/" + key;
     }
+
+    @Override
+    public void delete(String key) {
+        try {
+            Files.delete(Paths.get(BASE_DIR, key + ".png"));
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 }

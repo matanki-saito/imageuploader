@@ -10,4 +10,6 @@ public interface ImageRepository {
     String getThumbnailEndPointUri(String key);
 
     String getEndPointUri(String key);
+
+    void delete(String key);
 }
