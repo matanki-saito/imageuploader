@@ -24,23 +24,19 @@ const listImage = Vue.component('list-image', {
   },
 
   methods: {
-    clickCallback: function (pageNum) {
-      this.refreshData(Math.max(Number(pageNum) - 1, 0));
+    clickCallback: async function (pageNum) {
+      await this.refreshData(Math.max(Number(pageNum) - 1, 0));
     },
     refreshData: async function (pageNumber) {
-      const params = {params: {page: pageNumber, size: IMAGE_LIST_ENTRY_SIZE}};
+      const params = {params: {page: pageNumber, size: 10}};
 
-      axios.get(IMAGE_LIST_URL, params)
-           .then((res) => {
-             this.page = res.data;
-           })
-           .catch((res) => {
-             console.error(res);
-           });
+      const response = await axios.get('/manager/list', params);
+
+      this.page = response.data;
     },
     deleteItem: async function (id) {
       await axios.delete(`/manager/${id}/delete`);
-      this.refreshData(0);
+      await this.refreshData(0);
     }
   },
   template: `

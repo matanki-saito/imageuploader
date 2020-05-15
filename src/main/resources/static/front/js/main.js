@@ -73,9 +73,9 @@ const uploadImage = Vue.component('upload-image', {
     }
   },
   template: `
-    <div class="contents">      
-      <div class="input-group mb-3">
-      
+    <div class="contents">
+      <h1>Image uploader for wiki</h1>    
+      <div class="tool input-group mb-3">
         <div class="input-group-prepend">
           <file-upload
             class="form-control btn btn-outline-secondary"
