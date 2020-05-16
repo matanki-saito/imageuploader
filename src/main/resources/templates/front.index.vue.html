@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="utf-8">
 
@@ -21,6 +22,14 @@
 
   <!-- http get/post library -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <!-- reCaptcha v3 -->
+  <script th:src="'https://www.google.com/recaptcha/api.js?render=' + ${reCaptchaV3SiteKey}"></script>
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    const RE_CAPTCHA_V3_SITE_KEY = /*[[${reCaptchaV3SiteKey}]]*/ "dummy";
+    /*]]>*/
+  </script>
 
   <!-- main -->
   <link rel="stylesheet" href="/front/css/site.css">

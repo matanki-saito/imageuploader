@@ -10,7 +10,8 @@ const uploadImage = Vue.component('upload-image', {
   data() {
     return {
       files: [],
-      cdnUrl: ""
+      cdnUrl: "",
+      errors: []
     }
   },
 
@@ -45,7 +46,7 @@ const uploadImage = Vue.component('upload-image', {
     inputFilter: function (newFile, oldFile, prevent) {
       if (newFile && !oldFile) {
         // Filter non-image file
-        if (!/\.(jpeg|jpe|jpg|gif|png|webp)$/i.test(newFile.name)) {
+        if (!/\.(jpeg|jpe|jpg|gif|png)$/i.test(newFile.name)) {
           return prevent()
         }
       }
@@ -58,18 +59,39 @@ const uploadImage = Vue.component('upload-image', {
       }
     },
     upload: async function () {
+      await grecaptcha.ready(async () => {
+        const tkn = await grecaptcha.execute(RE_CAPTCHA_V3_SITE_KEY, {action: 'homepage'});
 
-      const reader = new FileReader();
-      reader.readAsDataURL(this.files[0].file);
-      await awaitForLoad(reader);
+        const reader = new FileReader();
+        reader.readAsDataURL(this.files[0].file);
+        await awaitForLoad(reader);
 
-      const base64 = reader.result.replace(new RegExp("^data:image/.*;base64,"), "");
-      const res = await axios.post("/front/upload", {
-        label: "none",
-        image: base64
+        const base64 = reader.result.replace(new RegExp("^data:image/.*;base64,"), "");
+
+        try {
+          const res = await axios.post("/front/upload", {
+            label: "none",
+            image: base64,
+            reCaptchaToken: tkn
+          });
+
+          this.cdnUrl = res.data.url;
+        } catch (error) {
+          const {
+            message,
+            status,
+            errors
+          } = error.response.data;
+
+          this.errors = errors;
+        }
       });
+    },
 
-      this.cdnUrl = res.data.url;
+    reset: function () {
+      this.files = [];
+      this.cdnUrl = "";
+      this.errors = [];
     }
   },
   template: `
@@ -115,14 +137,22 @@ const uploadImage = Vue.component('upload-image', {
           placeholder=""
           aria-label="Example text with button addon"
           aria-describedby="button-addon">
+
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button" @click="reset">Reset</button>
+        </div>
       </div>
       
-      <template v-if="files.length">
-        <div v-for="(file, index) in files" :key="file.id">
-          <img v-if="file.thumb" :src="file.thumb"/>
-          <span v-else>No Image</span>
-        </div>
-      </template>
+      <div v-for="(file, index) in files" :key="file.id" v-if="files.length">
+        <img v-if="file.thumb" :src="file.thumb"/>
+        <span v-else>No Image</span>
+      </div>
+      
+      <div class="alert alert-danger" role="alert" v-if="errors.length">
+        <ul>
+          <li v-for="(item, index) in errors">{{item.defaultMessage}}</li>
+        </ul>
+      </div>
       
     </div>
   `

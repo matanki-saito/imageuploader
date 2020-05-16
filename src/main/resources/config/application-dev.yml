@@ -24,3 +24,8 @@ spring:
   redis:
     host: localhost
     port: 6379
+reCaptcha:
+  v3:
+    site-key: 6LfwIOkUAAAAAEwRrWTXRWRq68A3EV-zOi5bbStu
+    # secret: [from triela-private]
+    threshold: 0.5

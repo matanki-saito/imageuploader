@@ -111,8 +111,10 @@ public class ImageDataFilterValidator implements ConstraintValidator<ImageDataFi
 
             if (!result) {
                 context.buildConstraintViolationWithTemplate(
-                        String.format("Allow size width %d-%d, height %d-%d",
-                                      minWidth, maxWidth, minHeight, maxHeight))
+                        String.format("Allow size width %d-%d, height %d-%d, Current: w%.0f-h%.0f",
+                                      minWidth, maxWidth, minHeight, maxHeight,
+                                      rect.getWidth(),
+                                      rect.getHeight()))
                        .addConstraintViolation();
             }
 
